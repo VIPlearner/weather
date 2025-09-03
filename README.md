@@ -12,7 +12,7 @@ A simple Android weather application built with Jetpack Compose.
 
 1. Clone the repository
 2. Open in Android Studio
-3. Add your API keys to `secrets.properties` if needed
+3. Add your Maps API keys to `secrets.properties` if needed
 4. Build and run
 
 ## Requirements
