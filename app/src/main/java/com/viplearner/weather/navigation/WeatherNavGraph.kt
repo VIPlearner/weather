@@ -39,7 +39,6 @@ fun WeatherNavGraph(
 
             SearchScreen(
                 currentLocation = LatLng(lat, lng),
-                searchText = "",
                 onValueChange = { },
                 onClickSearch = { }
             )

@@ -47,6 +47,7 @@ fun SearchTextField(
     value: String,
     onValueChange: (String) -> Unit,
     onKeyboardSearch: () -> Unit,
+    onClickPinpoint: () -> Unit,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     modifier: Modifier = Modifier,
     onClickSearch: ((Boolean) -> Unit)? = null,
@@ -111,7 +112,7 @@ fun SearchTextField(
             modifier = Modifier
                 .animateContentSize(tween())
                 .then(if (searchMode) Modifier.size(0.dp) else Modifier),
-            onClick = { onClickSearch?.invoke(true) }
+            onClick = {onClickPinpoint() }
         ) {
             Icon(
                 imageVector = Icons.Default.MyLocation,

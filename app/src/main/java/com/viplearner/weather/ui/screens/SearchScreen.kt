@@ -1,9 +1,10 @@
 package com.viplearner.weather.ui.screens
 
 import SearchTextField
+import SearchTextField
 import android.widget.Toast
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -27,6 +28,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition
@@ -45,7 +47,6 @@ const val DEFAULT_ZOOM = 8f
 @Composable
 fun SearchScreen(
     currentLocation: LatLng,
-    searchText: String,
     onValueChange: (String) -> Unit,
     onClickSearch: (String) -> Unit,
     viewModel: SearchViewModel = hiltViewModel()
@@ -123,9 +124,6 @@ fun SearchScreen(
                                 )
                             )
                         }
-                    },
-                    onDismiss = {
-                        viewModel.setSearchMode(false)
                     }
                 )
             }
