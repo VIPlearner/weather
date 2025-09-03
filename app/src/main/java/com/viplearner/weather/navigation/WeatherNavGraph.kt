@@ -9,6 +9,8 @@ import androidx.navigation.navArgument
 import com.google.android.gms.maps.model.LatLng
 import com.viplearner.weather.ui.screens.HomeView
 import com.viplearner.weather.ui.screens.SearchScreen
+import java.net.URLDecoder
+import java.nio.charset.StandardCharsets
 
 @Composable
 fun WeatherNavGraph(
@@ -21,8 +23,8 @@ fun WeatherNavGraph(
     ) {
         composable(Routes.HOME) {
             HomeView(
-                onNavigateToSearch = { lat, lng ->
-                    navController.navigate(Routes.searchWithLocation(lat, lng))
+                onNavigateToSearch = { lat, lng, locationName ->
+                    navController.navigate(Routes.searchWithLocation(lat, lng, locationName))
                 }
             )
         }
@@ -31,14 +33,21 @@ fun WeatherNavGraph(
             route = Routes.SEARCH,
             arguments = listOf(
                 navArgument("lat") { type = NavType.FloatType },
-                navArgument("lng") { type = NavType.FloatType }
+                navArgument("lng") { type = NavType.FloatType },
+                navArgument("locationName") {
+                    type = NavType.StringType
+                    defaultValue = ""
+                }
             )
         ) { backStackEntry ->
             val lat = backStackEntry.arguments?.getFloat("lat")?.toDouble() ?: 37.4219999
             val lng = backStackEntry.arguments?.getFloat("lng")?.toDouble() ?: -122.0862462
+            val encodedLocationName = backStackEntry.arguments?.getString("locationName") ?: ""
+            val locationName = URLDecoder.decode(encodedLocationName, StandardCharsets.UTF_8.toString())
 
             SearchScreen(
                 currentLocation = LatLng(lat, lng),
+                currentLocationName = locationName,
                 onValueChange = { },
                 onClickSearch = { }
             )

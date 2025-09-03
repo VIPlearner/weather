@@ -66,7 +66,7 @@ import kotlin.math.roundToInt
 
 @Composable
 fun HomeView(
-    onNavigateToSearch: (Double, Double) -> Unit,
+    onNavigateToSearch: (Double, Double, String) -> Unit,
     viewModel: HomeViewModel = hiltViewModel()
 ) {
 
@@ -123,7 +123,8 @@ fun HomeView(
         onRefresh = { viewModel.refreshWeather() },
         onClickSearch = {
             locationState.value?.let { location ->
-                onNavigateToSearch(location.latitude, location.longitude)
+                val locationName = weather?.cityName ?: "Current Location"
+                onNavigateToSearch(location.latitude, location.longitude, locationName)
             }
         }
     )

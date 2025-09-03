@@ -1,7 +1,6 @@
 package com.viplearner.weather.ui.screens
 
 import SearchTextField
-import SearchTextField
 import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Box
@@ -47,6 +46,7 @@ const val DEFAULT_ZOOM = 8f
 @Composable
 fun SearchScreen(
     currentLocation: LatLng,
+    currentLocationName: String = "",
     onValueChange: (String) -> Unit,
     onClickSearch: (String) -> Unit,
     viewModel: SearchViewModel = hiltViewModel()
@@ -70,7 +70,7 @@ fun SearchScreen(
     LaunchedEffect(Unit) {
         viewModel.selectLocation(
             CityCoordinate(
-                name = "",
+                name = currentLocationName.ifEmpty { "Current Location" },
                 lat = currentLocation.latitude,
                 lon = currentLocation.longitude,
                 country = "",
@@ -84,7 +84,7 @@ fun SearchScreen(
             .statusBarsPadding()
             .navigationBarsPadding(),
         topBar = {
-            Box(
+            Column(
                 modifier = Modifier.padding(20.dp)
             ) {
                 SearchTextField(

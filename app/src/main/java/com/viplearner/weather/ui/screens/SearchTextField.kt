@@ -74,7 +74,7 @@ fun SearchTextField(
                     imeAction = ImeAction.Search
                 ),
                 keyboardActions = KeyboardActions { onKeyboardSearch() },
-                textStyle = MaterialTheme.typography.bodyLarge.copy(color = MaterialTheme.colorScheme.onPrimaryContainer),
+                textStyle = MaterialTheme.typography.bodyLarge.copy(color = MaterialTheme.colorScheme.onSurface),
                 interactionSource = interactionSource,
                 cursorBrush = SolidColor(MaterialTheme.colorScheme.primary),
                 decorationBox = { innerTextField ->
